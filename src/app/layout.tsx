@@ -34,6 +34,7 @@ export const metadata: Metadata = {
     languages: { en: "/", "zh-CN": "/", "x-default": "/" },
   },
   openGraph: {
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Ten Heavens · 十重天" }],
     title: "Ten Heavens · 十重天",
     description:
       "Four worlds, ten heavens, five mappings. A bilingual map of the layered ontology of value — from physics to mathematics to fiction to fiat to the on-chain world.",
@@ -44,6 +45,7 @@ export const metadata: Metadata = {
     alternateLocale: ["zh_CN"],
   },
   twitter: {
+    images: ["/twitter-image.png"],
     card: "summary_large_image",
     title: "Ten Heavens · 十重天",
     description:
