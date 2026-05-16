@@ -4,6 +4,19 @@ import { useLang } from "@/lib/i18n";
 
 export default function Hero() {
   const { t, lang } = useLang();
+  const stackLabels = lang === "zh"
+    ? [
+        { label: "链上", hue: "#61f5b3" },
+        { label: "现实", hue: "#f0c14b" },
+        { label: "虚构", hue: "#b89cf5" },
+        { label: "物理", hue: "#b8a47a" },
+      ]
+    : [
+        { label: "ON-CHAIN", hue: "#61f5b3" },
+        { label: "REAL", hue: "#f0c14b" },
+        { label: "FICTIONAL", hue: "#b89cf5" },
+        { label: "PHYSICAL", hue: "#b8a47a" },
+      ];
 
   return (
     <header id="top" className="hero">
@@ -62,7 +75,7 @@ export default function Hero() {
           </div>
 
           <div className="hero-figure" aria-hidden>
-            <HeroStack />
+            <HeroStack labels={stackLabels} />
           </div>
         </div>
       </div>
@@ -159,13 +172,9 @@ export default function Hero() {
 }
 
 /* Static SVG stack for the hero — a compact visual companion to the headline */
-function HeroStack() {
-  const layers = [
-    { label: "On-chain", zh: "链上", hue: "#61f5b3", y: 60 },
-    { label: "Real", zh: "现实", hue: "#f0c14b", y: 140 },
-    { label: "Fictional", zh: "虚构", hue: "#b89cf5", y: 220 },
-    { label: "Physical", zh: "物理", hue: "#b8a47a", y: 300 },
-  ];
+function HeroStack({ labels }: { labels: { label: string; hue: string }[] }) {
+  const ys = [60, 140, 220, 300];
+  const layers = labels.map((l, i) => ({ ...l, y: ys[i] }));
 
   return (
     <svg viewBox="0 0 480 480" width="100%" height="100%">
@@ -203,7 +212,7 @@ function HeroStack() {
             0{4 - i}
           </text>
           <text x="360" y="4" textAnchor="end" fontFamily="Cabin Condensed, sans-serif" fontSize="13" fill={l.hue} letterSpacing="0.08em">
-            {l.label.toUpperCase()}
+            {l.label}
           </text>
         </g>
       ))}
